@@ -92,10 +92,12 @@ int main() {
     ThreadData thread_data[num_threads];
     int rows_per_thread = size / num_threads;
 
-    t1 = get_time();
+    
 
     int max_cores = sysconf(_SC_NPROCESSORS_ONLN) - 1; // Use n-1 cores
+    printf("%d",max_cores);
 
+    t1 = get_time();
     for (int i = 0; i < num_threads; i++) {
         thread_data[i].X = mat_ptr;
         thread_data[i].y = vec_ptr;
@@ -109,21 +111,25 @@ int main() {
         pthread_create(&threads[i], NULL, mse_thread, &thread_data[i]);
     }
 
+    
+
     for (int i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
     }
+    
 
     for (int j = 0; j < size; j++) {
         results[j] = sqrt(results[j] / size);
     }
 
     t2 = get_time();
+   
     time = t2 - t1;
 
     printf("MSE Vector:\n");
-    for (int i = 0; i < size; i++) {
-        printf("%.2f\n", results[i]);
-    }
+    //for (int i = 0; i < size; i++) {
+      //  printf("%.2f\n", results[i]);
+    //}
     printf("\nTime Elapsed: %f seconds\n", time);
 
     for (int i = 0; i < size; i++) {
