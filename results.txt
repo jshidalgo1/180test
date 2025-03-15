@@ -1,34 +1,29 @@
 25k t=1
-16.719081 seconds
-16.695840 seconds
-16.747280 seconds
+24.852478 seconds
+17.995322 seconds
+16.879732 seconds
 
 25k t=2
-11.355831 seconds
-11.349031 seconds
-11.354701 seconds
+16.864572 seconds
+16.853862 seconds
+16.855329 seconds
 
 25k t=4
-11.441157 seconds
-11.480494 seconds
-11.449628 seconds
+16.857001 seconds
+16.914864 seconds
+16.837953 seconds
 
 25k t=8
-11.512394 seconds
-11.536300 seconds
-11.403530 seconds
+16.757763 seconds
+16.734362 seconds
+16.771413 seconds
 
 25k t=16
-11.342700 seconds
-11.525912 seconds
-11.404890 seconds
+16.601017 seconds
+16.625775 seconds
+16.571814 seconds
 
 25k t=32
-11.300691 seconds
-11.289556 seconds
-11.172915 seconds
+
 
 25k t=64
-11.248543 seconds
-11.459657 seconds
-11.203540 second

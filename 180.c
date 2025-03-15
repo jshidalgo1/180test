@@ -33,7 +33,7 @@ double get_time() {
 void *mse_thread(void *arg) {
     ThreadData *data = (ThreadData *)arg;
 
-    // Assign thread to a specific core
+    // Assign thread to a specific core (using n-1 cores)
     cpu_set_t cpuset;
     CPU_ZERO(&cpuset);
     CPU_SET(data->core_id, &cpuset);
@@ -94,6 +94,8 @@ int main() {
 
     t1 = get_time();
 
+    int max_cores = sysconf(_SC_NPROCESSORS_ONLN) - 1; // Use n-1 cores
+
     for (int i = 0; i < num_threads; i++) {
         thread_data[i].X = mat_ptr;
         thread_data[i].y = vec_ptr;
@@ -102,7 +104,7 @@ int main() {
         thread_data[i].m = size;
         thread_data[i].start_row = i * rows_per_thread;
         thread_data[i].end_row = (i == num_threads - 1) ? size : (i + 1) * rows_per_thread;
-        thread_data[i].core_id = i % sysconf(_SC_NPROCESSORS_ONLN); // Assign core
+        thread_data[i].core_id = i % max_cores; // Assign core to (n-1) cores
 
         pthread_create(&threads[i], NULL, mse_thread, &thread_data[i]);
     }
