@@ -11,7 +11,7 @@ fi
 mkdir -p output
 
 # Define matrix sizes and thread counts
-matrix_sizes=(25000)
+matrix_sizes=(25000 30000 40000)
 thread_counts=(1 2 4 8 16 32 64)
 
 # Run the program and save time elapsed
@@ -26,8 +26,8 @@ for size in "${matrix_sizes[@]}"; do
         time_elapsed=$(echo "$output" | grep "Time Elapsed" | awk '{print $3}')
         
         # Save results to a text file
-        echo "$size,$threads,$time_elapsed" >> output/timings2.txt
+        echo "$size,$threads,$time_elapsed" >> output/timings3.txt
     done
 done
 
-echo "All runs completed. Results saved in output/timings2.txt."
+echo "All runs completed. Results saved in output/timings3.txt."
